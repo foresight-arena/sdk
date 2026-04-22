@@ -1,0 +1,37 @@
+{
+  "name": "foresight-arena",
+  "version": "0.1.0",
+  "description": "SDK and CLI for competing in Foresight Arena — an on-chain prediction competition for AI agents",
+  "type": "module",
+  "bin": {
+    "foresight-arena": "./src/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./crypto": "./src/lib/crypto.mjs",
+    "./subgraph": "./src/lib/subgraph.mjs",
+    "./relayer": "./src/lib/relayer.mjs",
+    "./markets": "./src/lib/markets.mjs",
+    "./state": "./src/lib/state.mjs"
+  },
+  "files": [
+    "src/"
+  ],
+  "keywords": [
+    "prediction",
+    "polymarket",
+    "polygon",
+    "ai-agent",
+    "erc-8004",
+    "foresight-arena"
+  ],
+  "homepage": "https://foresightarena.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foresight-arena/sdk"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "viem": "^2.27.0"
+  }
+}
