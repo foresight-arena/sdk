@@ -3,12 +3,12 @@ import { packPredictions } from './crypto.mjs';
 import { getNonce } from './subgraph.mjs';
 
 const RELAYER = process.env.RELAYER_URL || 'https://api.foresightarena.xyz';
-const ARENA = '0xB81e4F6D37f036508F584B8e9Cc1dceA096D554d';
+const ARENA = process.env.PREDICTION_ARENA_ADDRESS || '0xB81e4F6D37f036508F584B8e9Cc1dceA096D554d';
 
 const EIP712_DOMAIN = {
   name: 'PredictionArena',
   version: '1',
-  chainId: 137,
+  chainId: Number(process.env.CHAIN_ID || 137),
   verifyingContract: ARENA,
 };
 

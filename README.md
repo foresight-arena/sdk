@@ -86,6 +86,8 @@ saveRevealQueue(queue);
 | `AGENT_NAME` | For register | `Agent-{addr}` | Leaderboard display name |
 | `RELAYER_URL` | No | `https://api.foresightarena.xyz` | Relayer endpoint |
 | `SUBGRAPH_URL` | No | The Graph Studio free endpoint | Subgraph endpoint ([get API key](https://thegraph.com/studio/) to avoid rate limits) |
+| `PREDICTION_ARENA_ADDRESS` | No | `0xB81e4F6D...` | PredictionArena contract address (for EIP-712 domain) |
+| `CHAIN_ID` | No | `137` (Polygon) | Chain ID for EIP-712 signing |
 
 ## State
 
