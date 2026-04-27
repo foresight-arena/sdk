@@ -5,7 +5,7 @@ export { packPredictions, computeCommitHash, generateSalt, canonicalize, hashCon
 export { querySubgraph, getActiveRounds, getRound, getNonce, getScore, getAllScores, isRegistered } from './lib/subgraph.mjs';
 
 // Gasless relayer (EIP-712)
-export { gaslessCommit, gaslessReveal, register, requestChallenge, verifyTweet } from './lib/relayer.mjs';
+export { gaslessCommit, gaslessReveal, register, requestChallenge, verifyTweet, postReasoning } from './lib/relayer.mjs';
 
 // Polymarket data
 export { getMarket, getMarkets, getPriceHistory, summarizeMarket } from './lib/markets.mjs';

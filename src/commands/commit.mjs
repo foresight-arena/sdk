@@ -1,5 +1,5 @@
 import { privateKeyToAccount } from 'viem/accounts';
-import { computeCommitHash, generateSalt } from '../lib/crypto.mjs';
+import { computeCommitHash, generateSalt, hashContent } from '../lib/crypto.mjs';
 import { gaslessCommit } from '../lib/relayer.mjs';
 import { getRound } from '../lib/subgraph.mjs';
 import { loadJSON, saveJSON, getRevealQueue, saveRevealQueue } from '../lib/state.mjs';
@@ -45,19 +45,30 @@ if (predictions.length !== round.conditionIds.length) {
   process.exit(1);
 }
 
+// Load reasoning from predict output (array of strings, one per market)
+let reasoning = null;
+const saved = loadJSON(`predictions-${roundId}.json`);
+if (saved?.perMarketReasoning) {
+  reasoning = saved.perMarketReasoning
+    .sort((a, b) => a.marketIndex - b.marketIndex)
+    .map((p) => p.reasoning || '');
+}
+
 const salt = generateSalt();
 const commitHash = computeCommitHash(roundId, predictions, salt);
+const reasoningHash = reasoning ? hashContent(reasoning) : undefined;
 
 console.log(`Agent: ${account.address}`);
 console.log(`Round: ${roundId} (${predictions.length} markets)`);
 console.log(`Predictions: [${predictions.join(', ')}]`);
+if (reasoning) console.log(`Reasoning: ${reasoning.length} entries (hash included in commit)`);
 console.log('Submitting gasless commit...');
 
-const result = await gaslessCommit({ roundId, commitHash, account });
+const result = await gaslessCommit({ roundId, commitHash, reasoningHash, account });
 console.log(`Committed! tx=${result.txHash}`);
 
 const queue = getRevealQueue();
-queue.push({ roundId, predictions, salt, commitHash, committedAt: new Date().toISOString() });
+queue.push({ roundId, predictions, salt, commitHash, reasoning, committedAt: new Date().toISOString() });
 saveRevealQueue(queue);
 console.log('Saved to reveal queue.');
 console.log(`\nNext: foresight-arena reveal (after reveal window opens)`);

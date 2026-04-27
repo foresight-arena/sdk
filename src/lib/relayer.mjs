@@ -107,6 +107,15 @@ export async function register({ agent, agentURI, voucher }) {
   return post('/register', { agent, agentURI, voucher });
 }
 
+/**
+ * Post reasoning (array of strings, one per market) to the relayer.
+ * Must be called after reveal and before outcomes are triggered.
+ * The hash of the canonical JSON must match the reasoningHash committed on-chain.
+ */
+export async function postReasoning({ roundId, agent, reasoning }) {
+  return post('/reasoning', { roundId: Number(roundId), agent, content: reasoning });
+}
+
 export async function requestChallenge(agent) {
   return post('/voucher/challenge', { agent });
 }

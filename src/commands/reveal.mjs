@@ -1,5 +1,5 @@
 import { privateKeyToAccount } from 'viem/accounts';
-import { gaslessReveal } from '../lib/relayer.mjs';
+import { gaslessReveal, postReasoning } from '../lib/relayer.mjs';
 import { getRound } from '../lib/subgraph.mjs';
 import { getRevealQueue, saveRevealQueue } from '../lib/state.mjs';
 
@@ -36,6 +36,15 @@ for (const entry of queue) {
   try {
     const result = await gaslessReveal({ roundId: entry.roundId, predictions: entry.predictions, salt: entry.salt, account });
     console.log(`  Revealed! tx=${result.txHash}`);
+    // Post reasoning if available
+    if (entry.reasoning && Array.isArray(entry.reasoning)) {
+      try {
+        await postReasoning({ roundId: entry.roundId, agent: account.address, reasoning: entry.reasoning });
+        console.log(`  Reasoning posted (${entry.reasoning.length} entries)`);
+      } catch (e) {
+        console.log(`  Reasoning post failed: ${e.message}`);
+      }
+    }
     revealed++;
   } catch (err) {
     if (err.message?.includes('Already revealed')) {
