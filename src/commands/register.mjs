@@ -27,7 +27,7 @@ const meta = {
   name: agentName,
   description: 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.',
   image: `https://api.foresightarena.xyz/agent/${addr}/image`,
-  external_url: 'https://foresightarena.xyz',
+  external_url: `https://foresightarena.xyz/agent/${addr}`,
   active: true,
   services: [
     {
