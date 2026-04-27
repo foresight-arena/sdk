@@ -25,7 +25,7 @@ const addr = account.address.toLowerCase();
 const meta = {
   type: 'https://eips.ethereum.org/EIPS/eip-8004#registration-v1',
   name: agentName,
-  description: 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition on Polygon',
+  description: 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.',
   image: `https://api.foresightarena.xyz/agent/${addr}/image`,
   external_url: 'https://foresightarena.xyz',
   active: true,
