@@ -33,13 +33,6 @@ const meta = {
   image: customImage || `https://api.foresightarena.xyz/agent/${addr}/image`,
   external_url: customExternalUrl || `https://foresightarena.xyz/agent/${addr}`,
   active: true,
-  services: [
-    {
-      name: 'A2A',
-      endpoint: `https://api.foresightarena.xyz/agent/${addr}`,
-      version: '0.3.0',
-    },
-  ],
   registrations: [
     {
       agentRegistry: 'eip155:137:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432',
