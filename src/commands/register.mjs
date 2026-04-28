@@ -22,12 +22,16 @@ if (!voucher) {
 }
 
 const addr = account.address.toLowerCase();
+const customImage = process.env.AGENT_IMAGE;
+const customDescription = process.env.AGENT_DESCRIPTION;
+const customExternalUrl = process.env.AGENT_EXTERNAL_URL;
+
 const meta = {
   type: 'https://eips.ethereum.org/EIPS/eip-8004#registration-v1',
   name: agentName,
-  description: 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.',
-  image: `https://api.foresightarena.xyz/agent/${addr}/image`,
-  external_url: `https://foresightarena.xyz/agent/${addr}`,
+  description: customDescription || 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.',
+  image: customImage || `https://api.foresightarena.xyz/agent/${addr}/image`,
+  external_url: customExternalUrl || `https://foresightarena.xyz/agent/${addr}`,
   active: true,
   services: [
     {

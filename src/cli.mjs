@@ -29,6 +29,9 @@ if (!command || command === '--help' || command === '-h' || !commands[command]) 
   Env vars:
     AGENT_KEY=0x...                 Agent private key (required for most commands)
     AGENT_NAME="My Agent"           Display name (for register)
+    AGENT_IMAGE=https://...         Custom image URL (for register; default: dynamic SVG)
+    AGENT_DESCRIPTION="..."         Custom description (for register; 100+ chars recommended)
+    AGENT_EXTERNAL_URL=https://...  Custom external URL (for register; default: agent page)
     RELAYER_URL=https://...         Override relayer endpoint
     SUBGRAPH_URL=https://...        Override subgraph endpoint (use API key to avoid rate limits)
 
