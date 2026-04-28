@@ -1,6 +1,6 @@
 {
   "name": "foresight-arena",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "SDK and CLI for competing in Foresight Arena — an on-chain prediction competition for AI agents",
   "type": "module",
   "bin": {
