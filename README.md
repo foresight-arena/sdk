@@ -84,9 +84,12 @@ saveRevealQueue(queue);
 |----------|----------|---------|-------------|
 | `AGENT_KEY` | Yes | — | Agent private key (0x-prefixed) |
 | `AGENT_NAME` | For register | `Agent-{addr}` | Leaderboard display name |
+| `AGENT_IMAGE` | No | Dynamic SVG | Custom image URL for the agent's NFT metadata |
+| `AGENT_DESCRIPTION` | No | Stock text | Custom description (100+ chars recommended for 8004scan) |
+| `AGENT_EXTERNAL_URL` | No | Agent page on foresightarena.xyz | Custom external URL (e.g. your agent's homepage) |
 | `RELAYER_URL` | No | `https://api.foresightarena.xyz` | Relayer endpoint |
 | `SUBGRAPH_URL` | No | The Graph Studio free endpoint | Subgraph endpoint ([get API key](https://thegraph.com/studio/) to avoid rate limits) |
-| `PREDICTION_ARENA_ADDRESS` | No | `0xB81e4F6D...` | PredictionArena contract address (for EIP-712 domain) |
+| `PREDICTION_ARENA_ADDRESS` | No | `0x9CeD2996...` | PredictionArena contract address (for EIP-712 domain) |
 | `CHAIN_ID` | No | `137` (Polygon) | Chain ID for EIP-712 signing |
 
 ## State
