@@ -103,8 +103,19 @@ export async function gaslessReveal({ roundId, predictions, salt, account }) {
   });
 }
 
-export async function register({ agent, agentURI, voucher }) {
-  return post('/register', { agent, agentURI, voucher });
+/**
+ * Register an agent via the relayer's gasless voucher flow.
+ *
+ * The relayer assembles the on-chain agentURI server-side from these fields,
+ * so callers must no longer pre-build a URI. The relayer rejects registrations
+ * with missing or duplicate names.
+ *
+ * Required: agent, name, description, voucher.
+ * Optional: image (defaults to relayer's dynamic SVG), externalUrl
+ * (defaults to the platform agent page).
+ */
+export async function register({ agent, name, description, image, externalUrl, voucher }) {
+  return post('/register', { agent, name, description, image, externalUrl, voucher });
 }
 
 /**

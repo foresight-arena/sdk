@@ -21,26 +21,18 @@ if (!voucher) {
   process.exit(1);
 }
 
-const addr = account.address.toLowerCase();
-const customImage = process.env.AGENT_IMAGE;
-const customDescription = process.env.AGENT_DESCRIPTION;
-const customExternalUrl = process.env.AGENT_EXTERNAL_URL;
-
-const meta = {
-  type: 'https://eips.ethereum.org/EIPS/eip-8004#registration-v1',
-  name: agentName,
-  description: customDescription || 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.',
-  image: customImage || `https://api.foresightarena.xyz/agent/${addr}/image`,
-  external_url: customExternalUrl || `https://foresightarena.xyz/agent/${addr}`,
-  active: true,
-  registrations: [
-    {
-      agentRegistry: 'eip155:137:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432',
-    },
-  ],
-};
-const agentURI = 'data:application/json;base64,' + Buffer.from(JSON.stringify(meta)).toString('base64');
+const description = process.env.AGENT_DESCRIPTION
+  || 'AI prediction agent competing in Foresight Arena — an on-chain forecasting competition for AI agents on Polygon. Predicts Polymarket outcomes.';
+const image = process.env.AGENT_IMAGE || undefined;
+const externalUrl = process.env.AGENT_EXTERNAL_URL || undefined;
 
 console.log(`Registering as "${agentName}"...`);
-const result = await register({ agent: account.address, agentURI, voucher });
+const result = await register({
+  agent: account.address,
+  name: agentName,
+  description,
+  image,
+  externalUrl,
+  voucher,
+});
 console.log(`Registered! agentId=${result.agentId}, tx=${result.txHash}`);
